@@ -38,3 +38,10 @@ OR
 5/ Your animation should now play. If you want the GameObject to be automatically destroyed at the end of the animation, check the following setting:
 
 ![Screen](./doc/5.png)
+
+## Code usage
+
+```csharp
+var anim = GetComponent<SimpleAnimator>();
+anim.Play("attack");
+```
