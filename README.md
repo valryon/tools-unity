@@ -6,7 +6,7 @@ Compatible with Unity 4.2+.
 
 Used in the game [Steredenn](http://steredenn.pixelnest.io) to handle 24000 sprites and thousands of animations.
 
-**Disclaimer: this is a very rough release and it is provided "as it" with no support!**
+**Disclaimer: this is a very rough release and it is provided ith no support!**
 
 ## Installation
 
