@@ -245,7 +245,10 @@ namespace Pixelnest
           GUILayout.EndHorizontal();
           if (currentSprite != null)
           {
-            EditorGUI.DrawTextureTransparent(EditorGUILayout.GetControlRect(GUILayout.Width(250), GUILayout.Height(250)), currentSprite.texture, ScaleMode.ScaleToFit);
+            Rect spriteRect = new Rect(currentSprite.rect.x / currentSprite.texture.width, currentSprite.rect.y / currentSprite.texture.height,
+							currentSprite.rect.width / currentSprite.texture.width,currentSprite.rect.height / currentSprite.texture.height);
+						GUI.DrawTextureWithTexCoords(EditorGUILayout.GetControlRect(GUILayout.Width(250), GUILayout.Height(250)), currentSprite.texture, spriteRect, true);
+            //EditorGUI.DrawTextureTransparent(EditorGUILayout.GetControlRect(GUILayout.Width(250), GUILayout.Height(250)), currentSprite.texture, ScaleMode.ScaleToFit);
           }
         }
       }
