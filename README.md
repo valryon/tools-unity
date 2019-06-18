@@ -31,11 +31,12 @@ OR
 ![Screen](./doc/3.png)
 
 4/ Create a GameObject with a SpriteRenderer and a SimpleAnimator.
+
 5/ Assign the created animation object to the SimpleAnimator. If you have several animations, you should list them all in `clips`.
 
 ![Screen](./doc/4.png)
 
-5/ Your animation should now play. If you want the GameObject to be automatically destroyed at the end of the animation, check the following setting:
+6/ Your animation should now play. If you want the GameObject to be automatically destroyed at the end of the animation, check the following setting:
 
 ![Screen](./doc/5.png)
 
