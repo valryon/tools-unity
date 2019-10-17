@@ -312,8 +312,8 @@ public class BuilderEditor : EditorWindow
         proc.StartInfo.RedirectStandardError = true;
         proc.Start();
 
-        _commit_hash = proc.StandardOutput.ReadToEnd();
-        if (String.IsNullOrEmpty(_commit_hash))
+        _commitHash = proc.StandardOutput.ReadToEnd();
+        if (String.IsNullOrEmpty(_commitHash))
             Debug.LogError(proc.StandardError.ReadToEnd());
 #endif
   }
