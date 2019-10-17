@@ -1,14 +1,13 @@
 ﻿// This file is subject to the terms and conditions defined in
 // file 'LICENSE.md', which is part of this source code package.
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Simple animation clip
 /// </summary>
 public class SimpleAnimation : ScriptableObject
 {
-  public new string name = "default";
+  public new string name = "newAnimation";
   public float imagesPerSeconds = 24f;
   public bool loop = false;
   public bool randomFirstFrame = false;
@@ -19,22 +18,10 @@ public class SimpleAnimation : ScriptableObject
   /// </summary>
   public bool allowAutoUpdate = true;
 
-  public float FrameDuration
-  {
-    get
-    {
-      return 1f / imagesPerSeconds;
-    }
-  }
+  public float FrameDuration => 1f / imagesPerSeconds;
 
   /// <summary>
   /// Duration, in seconds
   /// </summary>
-  public float Duration
-  {
-    get
-    {
-      return FrameDuration * frames.Length;
-    }
-  }
+  public float Duration => FrameDuration * frames.Length;
 }
