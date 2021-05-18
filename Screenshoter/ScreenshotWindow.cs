@@ -29,9 +29,6 @@ public class ScreenshotWindow : EditorWindow
     {
       EditorGUILayout.LabelField("Screenshoter", EditorStyles.boldLabel);
 
-      resWidth = EditorGUILayout.IntField("Width", resWidth);
-      resHeight = EditorGUILayout.IntField("Height", resHeight);
-
       EditorGUILayout.LabelField("Path");
       screenshotLocation = EditorGUILayout.TextArea(screenshotLocation);
 
@@ -44,7 +41,7 @@ public class ScreenshotWindow : EditorWindow
         TakeScreenshot();
       }
 
-      EditorGUILayout.EndHorizontal();();
+      EditorGUILayout.EndHorizontal();
     }
     EditorGUILayout.EndVertical();
   }
