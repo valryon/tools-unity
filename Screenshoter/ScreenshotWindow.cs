@@ -20,51 +20,33 @@ public class ScreenshotWindow : EditorWindow
   #endregion
 
   private string screenshotLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-  private Camera targetCamera;
-
-  private int resWidth = Screen.width;
-  private int resHeight = Screen.height;
 
   void OnGUI()
   {
     titleContent = new GUIContent("Screenshoter");
 
-    EditorGUILayout.LabelField("Screenshoter", EditorStyles.boldLabel);
-
-    resWidth = EditorGUILayout.IntField("Width", resWidth);
-    resHeight = EditorGUILayout.IntField("Height", resHeight);
-
-    EditorGUILayout.LabelField("Path");
-    screenshotLocation = EditorGUILayout.TextArea(screenshotLocation);
-
-
-    if (targetCamera == null)
+    EditorGUILayout.BeginVertical("Box");
     {
-      targetCamera = Camera.main;
+      EditorGUILayout.LabelField("Screenshoter", EditorStyles.boldLabel);
+
+      resWidth = EditorGUILayout.IntField("Width", resWidth);
+      resHeight = EditorGUILayout.IntField("Height", resHeight);
+
+      EditorGUILayout.LabelField("Path");
+      screenshotLocation = EditorGUILayout.TextArea(screenshotLocation);
+
+      EditorGUILayout.BeginHorizontal();
+
+      EditorGUILayout.Space();
+
+      if (GUILayout.Button("Screenshot"))
+      {
+        TakeScreenshot();
+      }
+
+      EditorGUILayout.EndHorizontal();();
     }
-
-    targetCamera = (Camera) EditorGUILayout.ObjectField("Camera", targetCamera, typeof(Camera), true);
-
-
-    EditorGUILayout.BeginHorizontal();
-    if (GUILayout.Button("Scene screenshot"))
-    {
-      TakeScreenshot();
-    }
-
-    if (GUILayout.Button("Camera screenshot"))
-    {
-      TakeRenderScreenshot();
-    }
-
-    EditorGUILayout.EndHorizontal();
-
-
-    //--
-    EditorGUILayout.Separator();
-    //--
-
-    EditorGUI.indentLevel--;
+    EditorGUILayout.EndVertical();
   }
 
 
@@ -72,29 +54,6 @@ public class ScreenshotWindow : EditorWindow
   {
     string filename = ScreenShotName("unity");
     ScreenCapture.CaptureScreenshot(filename, 1);
-    Debug.Log($"Screenshot saved to {filename}");
-  }
-
-  private void TakeRenderScreenshot()
-  {
-    if (targetCamera == null) return;
-
-    RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
-    targetCamera.targetTexture = rt;
-    Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
-    targetCamera.Render();
-    RenderTexture.active = rt;
-    screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
-    targetCamera.targetTexture = null;
-    RenderTexture.active = null;
-
-    if (Application.isPlaying) Destroy(rt);
-    else DestroyImmediate(rt);
-
-    byte[] bytes = screenShot.EncodeToPNG();
-    string filename = ScreenShotName("camera");
-
-    File.WriteAllBytes(filename, bytes);
     Debug.Log($"Screenshot saved to {filename}");
   }
 
